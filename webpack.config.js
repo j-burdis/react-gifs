@@ -8,26 +8,31 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: '!!html-loader!templates/index.html'
+      template: 'templates/index.html'
+      // !!html-loader!
     })
   ],
-  devtool: 'sourcemap',
+  devtool: 'source-map',
+  // sourcemap
   mode: "development",
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
+        // loader:
       },
       {
         test: /\.s?css$/,
         exclude: /node_modules/,
-        loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
+        use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+        // loaders:
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        use: 'html-loader'
+        // loader:
       },
     ]
   },

@@ -12,7 +12,8 @@ const Hello = ({ name }) => {
   );
 };
 
-const root = document.getElementById('root');
-if (root) {
-  ReactDOM.render(<Hello name="World" />, root);
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(<Hello name="World" />);
 }
