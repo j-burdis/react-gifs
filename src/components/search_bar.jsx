@@ -10,14 +10,17 @@ class SearchBar extends Component {
   }
 
   handleUpdate = (event) => {
+    const { searchFunction } = this.props;
     this.setState({ term: event.target.value });
-    this.props.searchFunction(event.target.value);
+    searchFunction(event.target.value);
   }
 
   render() {
+    const { term } = this.state;
+
     return (
       <input
-        value={this.state.term}
+        value={term}
         type="text"
         className="form-control form-search"
         onChange={this.handleUpdate}

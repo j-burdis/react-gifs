@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
 class Gif extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    // don't call render if props.id did not change
-    return this.props.id !== nextProps.id;
+  shouldComponentUpdate(nextProps) {
+    // Avoid re-rendering if the id hasn't changed
+    const { id } = this.props;
+    return id !== nextProps.id;
   }
 
   handleClick = () => {
-    if (this.props.selectGif) {
-      this.props.selectGif(this.props.id);
+    const { selectGif, id } = this.props; // Destructure props
+    if (selectGif) {
+      selectGif(id);
     }
   }
 
@@ -20,7 +22,33 @@ class Gif extends Component {
 
     const src = `https://media2.giphy.com/media/${id}/200.gif`;
     return (
-      <img src={src} alt="" className="gif" onClick={this.handleClick} />
+      // <img
+      //   src={src}
+      //   alt="GIF"
+      //   className="gif"
+      //   onClick={this.handleClick}
+      //   role="button"
+      //   tabIndex={0}
+      //   onKeyDown={(event) => {
+      //     if (event.key === 'Enter' || event.key === ' ') {
+      //       this.handleClick();
+      //     }
+      //   }}
+      // />
+      <div
+        className="gif-container"
+        onClick={this.handleClick}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            this.handleClick();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        style={{ display: 'inline-block' }}
+      >
+        <img src={src} alt="GIF" className="gif" />
+      </div>
     );
   }
 }
